@@ -138,8 +138,6 @@ img,svg,canvas{display:block;max-width:100%}
 .herstatt{display:grid;grid-template-columns:1.25fr 1fr;gap:48px;align-items:center;position:relative}
 @media(max-width:980px){.herstatt{grid-template-columns:1fr;gap:20px;align-items:start}}
 .herstatt-left{position:relative;z-index:2}
-.year-ghost{position:absolute;right:-30px;top:-40px;font-family:'Fraunces',serif;font-style:italic;font-weight:900;font-size:clamp(120px,14vw,200px);color:var(--navy);opacity:.04;line-height:.82;letter-spacing:-.04em;user-select:none;pointer-events:none;z-index:0}
-@media(max-width:980px){.year-ghost{display:none}}
 .herstatt .eyebrow{margin-bottom:14px}
 .herstatt h2{margin-bottom:18px;line-height:1.05;font-size:clamp(24px,2.7vw,38px)}
 .story{font-family:'Fraunces',serif;font-size:clamp(13px,1.05vw,15.5px);line-height:1.55;color:#1a1a1a;max-width:580px}
@@ -353,7 +351,7 @@ img,svg,canvas{display:block;max-width:100%}
 .read{display:flex;flex-direction:column;justify-content:space-between;padding:16px 18px;background:#fff;border:1px solid var(--line);border-radius:10px;transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease);min-height:110px;position:relative;overflow:hidden;opacity:0;transform:translateY(18px)}
 .page.now .read{opacity:1;transform:translateY(0);transition:opacity .7s var(--ease-out) var(--d,0s),transform .7s var(--ease-out) var(--d,0s),box-shadow .35s var(--ease),border-color .35s var(--ease)}
 .read:hover{transform:translateY(-2px);box-shadow:0 14px 28px -14px rgba(0,15,43,.18);border-color:var(--navy)}
-.read .date{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;color:var(--blue);font-weight:600;text-transform:uppercase;margin-bottom:6px}
+.read .date{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;color:var(--blue);font-weight:600;text-transform:uppercase;margin-bottom:6px;display:none}
 .read h4{font-weight:700;font-size:13px;letter-spacing:-.01em;color:var(--navy);line-height:1.25;margin-bottom:6px}
 .read .arr{margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;color:var(--blue);text-transform:uppercase;font-weight:600;display:flex;align-items:center;gap:5px;transition:gap .25s,color .25s}
 .read:hover .arr{gap:10px;color:var(--navy)}
@@ -375,7 +373,6 @@ img,svg,canvas{display:block;max-width:100%}
     <section class="page now" data-title="The Problem">
       <div class="page-body">
         <div class="herstatt">
-          <div class="year-ghost fade" style="--d:.4s">1974</div>
           <div class="herstatt-left">
             <div class="eyebrow fade" style="--d:.1s"><span class="seq">01</span>The Origin Story</div>
             <h2 class="display dx-3 rise" style="--d:.2s">The day <span class="blue-it">"settlement risk"</span> was born.</h2>
@@ -659,27 +656,27 @@ img,svg,canvas{display:block;max-width:100%}
           <h2 class="display dx-3 rise" style="--d:.2s">More from <span class="blue-it">SouthState Correspondent.</span></h2>
           <div class="reading-list">
             <a class="read" style="--d:.4s" href="https://southstatecorrespondent.com/banker-to-banker/stablecoin-tokenized-deposits/8-insights-you-need-to-know-about-tokenized-deposits/" target="_blank" rel="noopener">
-              <div><div class="date">Dec 4, 2025</div><h4>8 Insights You Need to Know About Tokenized Deposits</h4></div>
+              <div><h4>8 Insights You Need to Know About Tokenized Deposits</h4></div>
               <div class="arr">READ →</div>
             </a>
             <a class="read" style="--d:.48s" href="https://southstatecorrespondent.com/banker-to-banker/innovation/every-banks-needs-to-take-another-look-at-a-digital-wallet-strategy/" target="_blank" rel="noopener">
-              <div><div class="date">Aug 13, 2025</div><h4>Every Bank Needs to Take Another Look at a Digital Wallet Strategy</h4></div>
+              <div><h4>Every Bank Needs to Take Another Look at a Digital Wallet Strategy</h4></div>
               <div class="arr">READ →</div>
             </a>
             <a class="read" style="--d:.56s" href="https://southstatecorrespondent.com/banker-to-banker/payments/6-bank-stablecoin-use-cases-and-reserve-management-options/" target="_blank" rel="noopener">
-              <div><div class="date">Oct 16, 2025</div><h4>6 Bank Stablecoin Use Cases and Reserve Management Options</h4></div>
+              <div><h4>6 Bank Stablecoin Use Cases and Reserve Management Options</h4></div>
               <div class="arr">READ →</div>
             </a>
             <a class="read" style="--d:.64s" href="https://southstatecorrespondent.com/banker-to-banker/crypto/stablecoin-profitability-driving-bank-profit/" target="_blank" rel="noopener">
-              <div><div class="date">Sep 10, 2025</div><h4>Stablecoin Profitability — Driving Bank Profit</h4></div>
+              <div><h4>Stablecoin Profitability — Driving Bank Profit</h4></div>
               <div class="arr">READ →</div>
             </a>
             <a class="read" style="--d:.72s" href="https://southstatecorrespondent.com/banker-to-banker/payments/stablecoin-what-bank-executives-need-to-know/" target="_blank" rel="noopener">
-              <div><div class="date">Jul 28, 2025</div><h4>Stablecoin: What Bank Executives Need to Know</h4></div>
+              <div><h4>Stablecoin: What Bank Executives Need to Know</h4></div>
               <div class="arr">READ →</div>
             </a>
             <a class="read" style="--d:.8s" href="https://southstatecorrespondent.com/blog/?s=Tokenized+deposit+&post_type=post" target="_blank" rel="noopener">
-              <div><div class="date">Full Archive</div><h4>All Tokenized Deposit + Stablecoin Coverage</h4></div>
+              <div><h4>All Tokenized Deposit + Stablecoin Coverage</h4></div>
               <div class="arr">BROWSE →</div>
             </a>
           </div>
