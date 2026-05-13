@@ -33,7 +33,7 @@
   --paper:#F5F6F8; --paper-2:#EAEDF1; --line:#DDE1E7;
   --green:#3EB489; --red:#D8443C;
   --ease:cubic-bezier(.2,.7,.2,1); --ease-out:cubic-bezier(.16,1,.3,1);
-  --head:0px; --foot:60px;
+  --head:0px; --foot:0px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;overflow:hidden;background:var(--paper);color:var(--navy-ink);font-family:'Cera Pro',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
@@ -82,6 +82,16 @@ img,svg,canvas{display:block;max-width:100%}
 .deck-bar{height:var(--foot);flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,3vw,40px);background:rgba(245,246,248,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);position:relative;z-index:10}
 .deck-bar.top{border-bottom:1px solid rgba(0,45,114,.07)}
 .deck-bar.bottom{border-top:1px solid rgba(0,45,114,.07)}
+
+/* Side-mounted nav arrows */
+.arrow-btn{position:absolute;top:50%;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.85);border:1px solid rgba(0,45,114,.12);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 8px 22px -10px rgba(0,15,43,.25);cursor:pointer;z-index:20;transition:background .25s var(--ease),border-color .25s var(--ease),box-shadow .25s var(--ease),transform .25s var(--ease),opacity .25s var(--ease);transform:translateY(-50%);padding:0}
+.arrow-btn.btn-prev{left:clamp(12px,2vw,28px)}
+.arrow-btn.btn-next{right:clamp(12px,2vw,28px)}
+.arrow-btn svg{width:18px;height:18px;stroke:var(--navy);stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:stroke .25s var(--ease)}
+.arrow-btn:hover:not(:disabled){background:var(--navy);border-color:var(--navy);box-shadow:0 14px 30px -10px rgba(0,15,43,.4);transform:translateY(-50%) scale(1.08)}
+.arrow-btn:hover:not(:disabled) svg{stroke:var(--gold)}
+.arrow-btn:disabled{opacity:.12;cursor:default;pointer-events:none}
+@media(max-width:600px){.arrow-btn{width:38px;height:38px}.arrow-btn svg{width:15px;height:15px}}
 
 /* Subtle top bar: shorter, lighter, ghost-style buttons, smaller dots */
 .deck-bar.top{height:44px;background:rgba(245,246,248,.7);border-bottom-color:rgba(0,45,114,.05)}
@@ -391,18 +401,6 @@ img,svg,canvas{display:block;max-width:100%}
 <body>
 
 <div class="deck" id="deck">
-
-  <nav class="deck-bar top">
-    <button class="nbtn btn-prev" disabled aria-label="Previous">
-      <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
-      <span>Prev</span>
-    </button>
-    <div class="dots"></div>
-    <button class="nbtn primary btn-next" aria-label="Next">
-      <span>Next</span>
-      <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
-    </button>
-  </nav>
 
   <main class="deck-stage" id="stage">
 
@@ -727,17 +725,12 @@ img,svg,canvas{display:block;max-width:100%}
 
   </main>
 
-  <nav class="deck-bar bottom">
-    <button class="nbtn btn-prev" disabled aria-label="Previous">
-      <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
-      <span>Prev</span>
-    </button>
-    <div class="dots"></div>
-    <button class="nbtn primary btn-next" aria-label="Next">
-      <span>Next</span>
-      <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
-    </button>
-  </nav>
+  <button class="arrow-btn btn-prev" disabled aria-label="Previous page">
+    <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+  <button class="arrow-btn btn-next" aria-label="Next page">
+    <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
 
 </div>
 
