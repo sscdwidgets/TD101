@@ -1,0 +1,1030 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Tokenized Deposits 101 — A Field Guide for Community Bankers</title>
+<meta name="description" content="An interactive primer on tokenized deposits from SouthState Correspondent.">
+
+<style>
+@font-face{font-family:'Cera Pro';src:url('https://sscdwidgets.github.io/fonts/CeraPro-Light.woff2') format('woff2');font-weight:300;font-display:swap}
+@font-face{font-family:'Cera Pro';src:url('https://sscdwidgets.github.io/fonts/CeraPro-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Cera Pro';src:url('https://sscdwidgets.github.io/fonts/CeraPro-Medium.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:'Cera Pro';src:url('https://sscdwidgets.github.io/fonts/CeraPro-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:'Cera Pro';src:url('https://sscdwidgets.github.io/fonts/CeraPro-Black.woff2') format('woff2');font-weight:900;font-display:swap}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700;1,9..144,900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --navy:#002D72; --navy-ink:#000F2B; --navy-deep:#001A47;
+  --gold:#FFBF3F; --gold-warm:#FFD27A;
+  --blue:#0960BB; --blue-bright:#1F86E8;
+  --gray:#4C4C4C; --gray-mid:#8A8E96; --gray-soft:#C9CCD1;
+  --paper:#F5F6F8; --paper-2:#EAEDF1; --line:#DDE1E7;
+  --green:#3EB489; --red:#D8443C;
+  --ease:cubic-bezier(.2,.7,.2,1); --ease-out:cubic-bezier(.16,1,.3,1);
+  --head:0px; --foot:78px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:var(--paper);color:var(--navy-ink);font-family:'Cera Pro',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{font-size:16px;line-height:1.5;letter-spacing:-0.005em}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+a{color:inherit;text-decoration:none}
+img,svg,canvas{display:block;max-width:100%}
+
+.mono{font-family:'JetBrains Mono',monospace}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--blue);display:inline-flex;align-items:center;gap:10px}
+.eyebrow .seq{color:var(--gold);font-weight:700}
+.eyebrow.on-dark{color:var(--gold)}
+.eyebrow.on-dark .seq{color:#fff}
+.display{font-family:'Cera Pro';font-weight:900;letter-spacing:-.035em;line-height:.95}
+.dx-1{font-size:clamp(48px,7vw,108px)}
+.dx-2{font-size:clamp(36px,5vw,72px)}
+.dx-3{font-size:clamp(26px,3.2vw,42px)}
+.dx-4{font-size:clamp(22px,2.4vw,32px)}
+.gold-it{color:var(--gold);font-family:'Fraunces',serif;font-weight:900;font-style:italic}
+.blue-it{color:var(--blue);font-family:'Fraunces',serif;font-weight:900;font-style:italic}
+.lede{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(16px,1.5vw,21px);line-height:1.4;letter-spacing:-.01em;font-style:italic;color:var(--gray)}
+
+/* ============ DECK SHELL ============ */
+.deck{position:fixed;inset:0;display:flex;flex-direction:column}
+.deck-head{height:var(--head);flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,3vw,40px);border-bottom:1px solid rgba(0,45,114,.07);background:rgba(245,246,248,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);position:relative;z-index:10}
+.brand{display:flex;align-items:center;gap:11px}
+.brand-mark{width:28px;height:28px;border-radius:7px;background:var(--navy);position:relative;display:grid;place-items:center;overflow:hidden;flex-shrink:0}
+.brand-mark::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,rgba(255,191,63,.55),transparent 55%)}
+.brand-mark span{position:relative;color:var(--gold);font-weight:900;font-size:13px;letter-spacing:-.02em;z-index:1}
+.brand-name{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-mid);font-weight:500}
+.brand-name b{color:var(--navy);font-weight:700}
+.head-title{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--navy);font-weight:600;display:flex;align-items:center;gap:12px}
+.head-title .dim{color:var(--gray-mid);font-weight:500}
+.head-title .div{width:1px;height:12px;background:var(--line)}
+.head-count{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gray-mid);letter-spacing:.1em;display:flex;align-items:baseline;gap:3px}
+.head-count b{color:var(--navy);font-weight:700;font-size:13px;min-width:18px;display:inline-block;text-align:right}
+@media(max-width:600px){.head-title{display:none}}
+.deck-progress{position:absolute;bottom:-1px;left:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--gold));width:0;transition:width .7s var(--ease-out);box-shadow:0 0 10px rgba(255,191,63,.5)}
+
+.deck-stage{position:relative;flex:1;overflow:hidden}
+.page{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .5s var(--ease),transform .65s var(--ease-out),filter .45s var(--ease);transform:translate3d(60px,0,0);filter:blur(8px);will-change:opacity,transform,filter}
+.page.now{opacity:1;pointer-events:auto;transform:translate3d(0,0,0);filter:blur(0);z-index:2}
+.page.past{transform:translate3d(-60px,0,0);filter:blur(8px);z-index:1}
+.page-body{position:absolute;inset:0;display:flex;flex-direction:column;padding:clamp(28px,4vh,54px) clamp(24px,4vw,72px);max-width:1320px;margin:0 auto;width:100%;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+
+.deck-foot{height:var(--foot);flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,3vw,40px);border-top:1px solid rgba(0,45,114,.07);background:rgba(245,246,248,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);position:relative;z-index:10}
+.nbtn{display:inline-flex;align-items:center;gap:12px;padding:15px 28px;border-radius:99px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.16em;font-weight:700;text-transform:uppercase;background:#fff;border:1.5px solid var(--navy);color:var(--navy);transition:all .25s var(--ease);box-shadow:0 6px 18px -6px rgba(0,15,43,.28)}
+.nbtn:hover:not(:disabled){background:var(--navy);color:#fff;transform:translateY(-2px);box-shadow:0 14px 28px -8px rgba(0,15,43,.5)}
+.nbtn:hover:not(:disabled) svg{stroke:#fff}
+.nbtn:disabled{opacity:.32;cursor:default;border-color:var(--line);box-shadow:none}
+.nbtn:disabled svg{stroke:var(--gray-mid)}
+.nbtn svg{width:18px;height:18px;stroke:var(--navy);stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:stroke .25s var(--ease)}
+.nbtn.primary{background:var(--navy);color:var(--gold);border-color:var(--navy);box-shadow:0 10px 24px -8px rgba(0,15,43,.5),inset 0 0 0 1px rgba(255,191,63,.18)}
+.nbtn.primary svg{stroke:var(--gold)}
+.nbtn.primary:hover:not(:disabled){background:var(--navy-ink);color:var(--gold);transform:translateY(-2px);box-shadow:0 18px 34px -10px rgba(0,15,43,.6),inset 0 0 0 1px rgba(255,191,63,.3)}
+.nbtn.primary:hover:not(:disabled) svg{stroke:var(--gold)}
+.nbtn.primary:disabled{background:#fff;color:var(--gray-mid);border-color:var(--line);box-shadow:none}
+.nbtn.primary:disabled svg{stroke:var(--gray-mid)}
+@media(max-width:540px){.nbtn span{display:none}.nbtn{padding:15px 18px}}
+.dots{display:flex;gap:7px;align-items:center;flex:1;justify-content:center}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--gray-soft);transition:all .35s var(--ease);position:relative;padding:0;border:none;cursor:pointer}
+.dot::before{content:attr(data-title);position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;background:var(--navy);color:#fff;padding:5px 9px;border-radius:5px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;font-weight:600}
+.dot:hover::before{opacity:1}
+.dot.now{background:var(--navy);width:20px;border-radius:6px}
+@media(max-width:430px){.dot::before{display:none}}
+
+/* ============ ENTRY ANIMATIONS ============ */
+.fade,.rise,.scale-in{will-change:opacity,transform}
+.rise{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease-out) var(--d,0s),transform .9s var(--ease-out) var(--d,0s)}
+.page.now .rise{opacity:1;transform:translateY(0)}
+.fade{opacity:0;transition:opacity .9s var(--ease) var(--d,0s)}
+.page.now .fade{opacity:1}
+.scale-in{opacity:0;transform:scale(.94);transition:opacity .8s var(--ease-out) var(--d,0s),transform 1s var(--ease-out) var(--d,0s)}
+.page.now .scale-in{opacity:1;transform:scale(1)}
+.word-rev{display:inline-block;overflow:hidden;padding:0 .04em;margin:0 -.02em;vertical-align:bottom}
+.word-rev span{display:inline-block;transform:translateY(110%);transition:transform .9s var(--ease-out) var(--d,0s)}
+.page.now .word-rev span{transform:translateY(0)}
+
+@media(prefers-reduced-motion:reduce){
+  .page{transition:opacity .2s}
+  .page.now,.page.past{transform:none;filter:none}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}
+
+/* ============ PAGE 1: COVER ============ */
+.cover{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center;position:relative}
+@media(max-width:880px){.cover{grid-template-columns:1fr;gap:24px;align-items:start}}
+.cover-grid{position:absolute;inset:-40px;pointer-events:none;background-image:linear-gradient(rgba(0,45,114,.4) 1px,transparent 1px),linear-gradient(90deg,rgba(0,45,114,.4) 1px,transparent 1px);background-size:70px 70px;opacity:.18;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 22%,transparent 78%);-webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 22%,transparent 78%)}
+.cover-left{position:relative;z-index:1}
+.cover .eyebrow{margin-bottom:22px}
+.eyebrow-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(255,191,63,.22);animation:bdot 2.4s var(--ease) infinite}
+@keyframes bdot{0%,100%{box-shadow:0 0 0 4px rgba(255,191,63,.22)}50%{box-shadow:0 0 0 9px rgba(255,191,63,0)}}
+.cover h1{margin-bottom:22px}
+.cover .lede{max-width:480px;margin-bottom:22px}
+.cover-meta{display:flex;gap:26px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-mid);margin-bottom:24px;flex-wrap:wrap}
+.cover-meta b{display:block;color:var(--navy);font-weight:700;font-size:11px;margin-top:3px}
+.cta{display:inline-flex;align-items:center;gap:12px;padding:14px 22px;background:var(--navy);color:var(--gold);border-radius:99px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;transition:all .3s var(--ease);box-shadow:0 12px 28px -10px rgba(0,15,43,.35);position:relative;overflow:hidden;cursor:pointer;border:none}
+.cta::before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 35%,rgba(255,191,63,.3) 50%,transparent 65%);transform:translateX(-110%);transition:transform .7s var(--ease)}
+.cta:hover{transform:translateY(-2px);box-shadow:0 16px 36px -10px rgba(0,15,43,.45)}
+.cta:hover::before{transform:translateX(110%)}
+.cta .arr{transition:transform .3s var(--ease)}
+.cta:hover .arr{transform:translateX(4px)}
+.cover-right{position:relative;height:100%;display:grid;place-items:center}
+.token-canvas{width:100%;max-width:420px;aspect-ratio:1;position:relative}
+.token-canvas canvas{position:absolute;inset:0;width:100%;height:100%}
+@media(max-width:880px){.token-canvas{max-width:240px;margin:0 auto}}
+
+/* ============ PAGE 2: HERSTATT ============ */
+.herstatt{display:grid;grid-template-columns:1.25fr 1fr;gap:48px;align-items:center;position:relative}
+@media(max-width:980px){.herstatt{grid-template-columns:1fr;gap:20px;align-items:start}}
+.herstatt-left{position:relative;z-index:2}
+.year-ghost{position:absolute;right:-30px;top:-40px;font-family:'Fraunces',serif;font-style:italic;font-weight:900;font-size:clamp(120px,14vw,200px);color:var(--navy);opacity:.04;line-height:.82;letter-spacing:-.04em;user-select:none;pointer-events:none;z-index:0}
+@media(max-width:980px){.year-ghost{display:none}}
+.herstatt .eyebrow{margin-bottom:14px}
+.herstatt h2{margin-bottom:18px;line-height:1.05;font-size:clamp(24px,2.7vw,38px)}
+.story{font-family:'Fraunces',serif;font-size:clamp(13px,1.05vw,15.5px);line-height:1.55;color:#1a1a1a;max-width:580px}
+.story p{margin-bottom:.7em}
+.story p.first::first-letter{font-family:'Fraunces',serif;font-weight:900;font-size:3.6em;float:left;line-height:.82;padding:5px 10px 0 0;color:var(--navy);font-style:italic}
+.story .pull{display:block;padding:12px 0;margin:12px 0 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-style:italic;font-weight:300;font-size:1.05em;color:var(--navy)}
+.flight-stage{position:relative;width:100%;max-width:540px;margin:0 auto;aspect-ratio:1.32}
+.flight-stage svg{width:100%;height:100%;overflow:visible}
+.flight-pin .glow{transform-origin:center;animation:pin-pulse 2s var(--ease) infinite}
+@keyframes pin-pulse{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.3)}}
+.payment-dot{opacity:0;offset-path:path('M 90 130 Q 250 80 410 130');animation:none}
+.page.now .payment-dot{animation:fly 5s linear .8s infinite}
+@keyframes fly{
+  0%{offset-distance:0%;opacity:0}
+  4%{opacity:1}
+  45%{offset-distance:45%;opacity:1}
+  55%{offset-distance:48%;opacity:1;filter:drop-shadow(0 0 8px #ff5b53)}
+  62%{offset-distance:50%;opacity:.4;filter:drop-shadow(0 0 14px #ff5b53)}
+  72%,100%{offset-distance:50%;opacity:0}
+}
+.payment-trail{stroke:var(--blue);stroke-width:2;fill:none;stroke-dasharray:4 6;animation:trail 5s linear .8s infinite}
+@keyframes trail{0%,55%{stroke-dashoffset:0}80%,100%{stroke-dashoffset:-200}}
+.payment-fail-x{opacity:0;transform-origin:center;transform:scale(0)}
+.page.now .payment-fail-x{animation:fail-x .4s var(--ease-out) 4s forwards}
+@keyframes fail-x{0%{opacity:0;transform:scale(0) rotate(-45deg)}60%{opacity:1;transform:scale(1.2) rotate(0)}100%{opacity:1;transform:scale(1) rotate(0)}}
+.failure-stamp{transform-origin:center;opacity:0;transform:scale(2) rotate(-12deg)}
+.page.now .failure-stamp{animation:stamp-land .7s var(--ease-out) 4.2s forwards}
+@keyframes stamp-land{0%{opacity:0;transform:scale(2.5) rotate(-12deg)}60%{opacity:1;transform:scale(.9) rotate(-12deg)}100%{opacity:.94;transform:scale(1) rotate(-12deg)}}
+
+/* ============ PAGE 3: DEFINITION ============ */
+.define{display:grid;grid-template-columns:1fr 1.2fr;gap:48px;align-items:center}
+@media(max-width:980px){.define{grid-template-columns:1fr;gap:20px;align-items:start}}
+.define-left .eyebrow{margin-bottom:14px}
+.define-left h2{margin-bottom:18px}
+.define-left p{font-size:clamp(13px,1.05vw,15.5px);line-height:1.55;color:var(--gray);margin-bottom:.7em;max-width:480px}
+.define-left p strong{color:var(--navy);font-weight:600}
+.morph-stage{position:relative;width:100%;max-width:540px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.ledger-panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:0 6px 24px -12px rgba(0,15,43,.1);position:relative}
+.lp-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--gray-mid);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.lp-dot{width:7px;height:7px;border-radius:50%;background:var(--gray-soft)}
+.ledger-panel.before .lp-dot{background:#D8443C}
+.ledger-panel.after .lp-dot{background:var(--green)}
+.ledger-panel.before{background:linear-gradient(180deg,#fff,#fbfbfd)}
+.ledger-panel.after{background:linear-gradient(180deg,#fff,#f5fbf8);border-color:#c3e8d5}
+.agg-row{display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:4px 0}
+.agg-name{font-family:'Cera Pro';font-size:12px;color:var(--gray);font-weight:500}
+.agg-name b{color:var(--navy);font-weight:700;display:block;font-size:10px;font-family:'JetBrains Mono',monospace;letter-spacing:.1em;margin-bottom:2px;text-transform:uppercase}
+.agg-value{font-family:'Fraunces',serif;font-style:italic;font-weight:900;color:var(--navy);font-size:clamp(28px,3.2vw,40px);letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums}
+.agg-meta{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:#D8443C;font-weight:600;margin-top:4px}
+.morph-arrow{display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 0;position:relative}
+.morph-arrow svg{width:20px;height:20px;color:var(--gold)}
+.morph-arrow-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--gold)}
+.morph-arrow svg path{stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.morph-arrow .pulse-ring{position:absolute;top:4px;left:50%;width:16px;height:16px;border-radius:50%;border:2px solid var(--gold);transform:translateX(-50%) scale(.5);opacity:0;pointer-events:none}
+.page.now .morph-arrow .pulse-ring{animation:arrow-pulse 1.8s var(--ease) 1.6s infinite}
+@keyframes arrow-pulse{0%{transform:translateX(-50%) scale(.5);opacity:.7}100%{transform:translateX(-50%) scale(2.8);opacity:0}}
+.token-rows{display:flex;flex-direction:column;gap:5px;margin-top:4px}
+.token-row{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:6px 10px;background:rgba(62,180,137,.06);border:1px solid rgba(62,180,137,.18);border-radius:7px;font-family:'JetBrains Mono',monospace;font-size:11px;opacity:0;transform:translateY(-10px) scale(.94);transition:opacity .5s var(--ease-out),transform .55s var(--ease-out)}
+.token-row.in{opacity:1;transform:translateY(0) scale(1)}
+.token-row .tk-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(62,180,137,.18)}
+.token-row .tk-addr{color:var(--navy);font-weight:700;letter-spacing:.04em}
+.token-row .tk-amt{color:var(--green);font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+.tk-total{display:flex;justify-content:space-between;align-items:baseline;padding:8px 4px 0;margin-top:4px;border-top:1px dashed rgba(62,180,137,.4);font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray)}
+.tk-total b{font-family:'Fraunces',serif;font-style:italic;font-weight:900;color:var(--green);font-size:16px;letter-spacing:0}
+
+/* ============ PAGE 4: SUPERPOWERS ============ */
+.powers{background:var(--navy-ink);color:#fff;position:absolute;inset:0;overflow:hidden}
+.powers::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 0%,rgba(9,96,187,.35),transparent 50%),radial-gradient(circle at 0% 100%,rgba(255,191,63,.1),transparent 45%);pointer-events:none}
+.powers .page-body{z-index:1}
+.powers .eyebrow{margin-bottom:14px}
+.powers h2{margin-bottom:26px;color:#fff;max-width:18ch}
+.powers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:880px){.powers-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.powers-grid{grid-template-columns:1fr}}
+.power{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:18px;position:relative;overflow:hidden;display:flex;flex-direction:column;opacity:0;transform:translateY(24px) scale(.97);transition:opacity .7s var(--ease-out) var(--d,0s),transform .8s var(--ease-out) var(--d,0s),background .3s,border-color .3s}
+.page.now .power{opacity:1;transform:translateY(0) scale(1)}
+.power:hover{background:rgba(255,255,255,.07);border-color:rgba(255,191,63,.3)}
+.power-num{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;color:var(--gold);font-weight:600;margin-bottom:6px}
+.power h3{font-family:'Cera Pro';font-weight:700;font-size:clamp(14px,1.25vw,17px);letter-spacing:-.02em;line-height:1.15;margin-bottom:6px;color:#fff}
+.power p{font-size:11.5px;line-height:1.5;color:rgba(255,255,255,.65);max-width:32ch}
+.power .gfx{margin-top:auto;padding-top:10px;display:flex;justify-content:flex-end;align-items:center;min-height:60px}
+/* Dial 24/7 */
+.dial{width:100px;height:100px;position:relative}
+.dial svg{width:100%;height:100%;transform:rotate(-90deg)}
+.dial-c1{fill:none;stroke:rgba(255,255,255,.1);stroke-width:5}
+.dial-c2{fill:none;stroke:var(--gold);stroke-width:5;stroke-linecap:round;stroke-dasharray:220;stroke-dashoffset:220}
+.page.now .power .dial-c2{animation:dial-fill 1.8s var(--ease-out) .6s forwards}
+@keyframes dial-fill{to{stroke-dashoffset:0}}
+.dial-text{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Cera Pro';font-weight:900;font-size:22px;color:#fff;letter-spacing:-.02em;line-height:1;gap:5px}
+.dial-text small{display:block;font-size:8px;letter-spacing:.18em;color:var(--gold);font-weight:600;font-family:'JetBrains Mono',monospace}
+/* Ledger split mini */
+.lv{display:flex;gap:6px;width:100%}
+.lv-col{flex:1;padding:5px 6px;border-radius:5px;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.05em;line-height:1.5}
+.lv-col.old{background:rgba(216,68,60,.1);border:1px solid rgba(216,68,60,.25);color:#ff8b85}
+.lv-col.new{background:rgba(62,180,137,.1);border:1px solid rgba(62,180,137,.3);color:#7fe0b5}
+.lv-col .lbl{font-size:7px;letter-spacing:.15em;opacity:.7;text-transform:uppercase;margin-bottom:3px}
+.lv-row{display:flex;justify-content:space-between;padding:2px 3px;background:rgba(255,255,255,.04);border-radius:2px;margin-bottom:2px}
+/* Atom link */
+.atom{width:100%;max-width:130px;height:50px;position:relative}
+.atom svg{width:100%;height:100%}
+.atom-pulse{stroke:var(--gold);stroke-width:1.5;fill:none;stroke-dasharray:2 4;animation:dash 4s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-30}}
+/* Code mini */
+.code-mini{font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.55;color:rgba(255,255,255,.65);background:rgba(0,0,0,.25);border-radius:5px;padding:8px 10px;width:100%}
+.code-mini .k{color:var(--gold)}
+.code-mini .s{color:#7fe0b5}
+.code-mini .c{color:rgba(255,255,255,.3);font-style:italic}
+.curs{display:inline-block;width:5px;height:10px;background:var(--gold);vertical-align:middle;animation:blink .9s steps(1) infinite;margin-left:1px}
+@keyframes blink{50%{opacity:0}}
+/* Orbits */
+.orbits{width:80px;height:80px;position:relative}
+.orbits .o{position:absolute;width:100%;height:100%;border-radius:50%;border:1px solid rgba(255,255,255,.12);animation:spin 16s linear infinite}
+.orbits .o:nth-child(2){animation-duration:12s;animation-direction:reverse;transform:rotate(45deg)}
+.orbits .o:nth-child(3){animation-duration:18s;transform:rotate(90deg)}
+.orbits .o::after{content:'';position:absolute;width:8px;height:8px;border-radius:50%;background:var(--gold);left:50%;top:-4px;transform:translateX(-50%);box-shadow:0 0 8px rgba(255,191,63,.6)}
+.orbits .o:nth-child(2)::after{background:var(--blue-bright);box-shadow:0 0 8px rgba(31,134,232,.6)}
+.orbits .o:nth-child(3)::after{background:#fff}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* Agent */
+.agent{width:100%;max-width:130px;height:60px;position:relative}
+.agent svg{width:100%;height:100%}
+.flow{stroke:var(--gold);stroke-width:1.2;fill:none;stroke-dasharray:3 3;animation:dash 3s linear infinite}
+
+/* ============ PAGE 5: VS STABLECOIN ============ */
+.versus{display:flex;flex-direction:column}
+.versus .eyebrow{margin-bottom:12px}
+.versus h2{margin-bottom:20px}
+.versus-intro{font-family:'Fraunces',serif;font-size:clamp(14px,1.15vw,17px);line-height:1.45;color:var(--gray);margin-bottom:14px;max-width:680px;font-style:italic}
+
+/* Face-off comparison panel */
+.faceoff{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 12px 32px -18px rgba(0,15,43,.18)}
+.faceoff-head{display:grid;grid-template-columns:1fr 1fr;flex-shrink:0}
+.faceoff-side{padding:14px 22px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;gap:11px;border-bottom:2px solid transparent}
+.faceoff-side.td{background:linear-gradient(180deg,rgba(255,191,63,.22),rgba(255,191,63,.06));color:var(--navy);border-bottom-color:var(--gold);border-right:1px solid var(--line)}
+.faceoff-side.sc{background:linear-gradient(180deg,rgba(31,134,232,.12),rgba(31,134,232,.03));color:var(--blue);border-bottom-color:var(--blue-bright)}
+.faceoff-side .swatch{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.faceoff-side.td .swatch{background:var(--gold);box-shadow:0 0 0 3px rgba(255,191,63,.3)}
+.faceoff-side.sc .swatch{background:var(--blue-bright);box-shadow:0 0 0 3px rgba(31,134,232,.2)}
+
+.faceoff-row{border-top:1px solid var(--paper-2)}
+.faceoff-label{text-align:center;padding:10px 14px 6px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gray-mid);font-weight:700;background:linear-gradient(180deg,#fafbfc,transparent)}
+.faceoff-pair{display:grid;grid-template-columns:1fr 1fr}
+.faceoff-cell{padding:6px 22px 14px;font-size:13px;line-height:1.45;display:flex;flex-direction:column;gap:6px;justify-content:flex-start}
+.faceoff-cell.td{color:var(--navy);font-weight:500;border-right:1px solid var(--paper-2)}
+.faceoff-cell.sc{color:var(--gray);font-weight:500}
+.faceoff-cell strong{font-weight:700}
+
+/* YES/NO chips */
+.chip{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.1em;padding:3px 9px;border-radius:99px;align-self:flex-start;text-transform:uppercase}
+.chip-dot{width:6px;height:6px;border-radius:50%}
+.chip.yes{background:rgba(62,180,137,.16);color:#1f7a5a}
+.chip.yes .chip-dot{background:var(--green)}
+.chip.no{background:rgba(216,68,60,.13);color:#a82c24}
+.chip.no .chip-dot{background:var(--red)}
+
+@media(max-width:780px){
+  .faceoff-head{grid-template-columns:1fr 1fr}
+  .faceoff-side{padding:10px 14px;font-size:10px;letter-spacing:.12em;gap:8px}
+  .faceoff-pair{grid-template-columns:1fr 1fr}
+  .faceoff-cell{padding:6px 12px 12px;font-size:12px}
+  .faceoff-label{font-size:9px;padding:8px 10px 4px}
+}
+
+/* ============ PAGE 6: REGULATORY ============ */
+.regulatory{background:var(--navy);color:#fff;position:absolute;inset:0;overflow:hidden}
+.regulatory::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 100% 0%,rgba(255,191,63,.18),transparent 50%),radial-gradient(ellipse at 0% 100%,rgba(9,96,187,.4),transparent 45%);pointer-events:none}
+.regulatory .page-body{z-index:1}
+.regulatory .eyebrow{margin-bottom:14px}
+.regulatory h2{margin-bottom:24px;color:#fff;max-width:18ch}
+.reg-quote{font-family:'Fraunces',serif;font-weight:300;font-style:italic;font-size:clamp(28px,4.2vw,56px);line-height:1.12;letter-spacing:-.02em;max-width:920px;margin:0 0 14px;position:relative;z-index:1;min-height:1.2em}
+.reg-quote .qmark{color:var(--gold);font-size:1.4em;line-height:0;display:inline-block;transform:translateY(.18em);margin-right:6px}
+.reg-quote em{color:var(--gold);font-style:italic;display:inline-block;transform-origin:center}
+.page.now .reg-quote em{animation:emphasize 3s var(--ease) 2.2s infinite}
+@keyframes emphasize{0%,100%{transform:scale(1)}10%{transform:scale(1.18)}}
+.reg-attr{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.15em;color:rgba(255,255,255,.55);text-transform:uppercase;font-weight:500;margin-bottom:30px;position:relative;z-index:1;max-width:780px;line-height:1.6}
+.reg-attr strong{color:#fff;font-weight:700}
+.reg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;position:relative;z-index:1}
+@media(max-width:780px){.reg-grid{grid-template-columns:1fr}}
+.reg-card{padding:20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:12px;backdrop-filter:blur(10px);position:relative;overflow:hidden;opacity:0;transform:translateY(20px);transition:opacity .8s var(--ease-out) var(--d,0s),transform .9s var(--ease-out) var(--d,0s)}
+.page.now .reg-card{opacity:1;transform:translateY(0)}
+.reg-card::after{content:'';position:absolute;top:0;left:0;height:3px;background:var(--gold);width:0;transition:width 1s var(--ease-out) var(--d,0s)}
+.page.now .reg-card::after{width:100%}
+.reg-card .yr{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--gold);font-weight:600;margin-bottom:8px}
+.reg-card h4{font-weight:700;font-size:15px;letter-spacing:-.01em;margin-bottom:6px;line-height:1.2}
+.reg-card p{font-size:12px;line-height:1.5;color:rgba(255,255,255,.7)}
+.reg-card p em{color:var(--gold);font-style:italic;font-family:'Fraunces',serif;font-weight:700}
+
+/* ============ PAGE 7: WHAT TO DO ============ */
+.imply{display:flex;flex-direction:column}
+.imply .eyebrow{margin-bottom:14px}
+.imply h2{margin-bottom:24px}
+.imply-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(max-width:780px){.imply-grid{grid-template-columns:1fr}}
+.imp{padding:20px 22px;border-radius:14px;background:#fff;border:1px solid var(--line);position:relative;overflow:hidden;transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease);opacity:0;transform:translateY(20px);display:flex;flex-direction:column}
+.page.now .imp{opacity:1;transform:translateY(0);transition:opacity .8s var(--ease-out) var(--d,0s),transform .9s var(--ease-out) var(--d,0s),box-shadow .35s var(--ease),border-color .35s var(--ease)}
+.imp:hover{transform:translateY(-3px);box-shadow:0 16px 30px -16px rgba(0,15,43,.18);border-color:var(--gold)}
+.imp::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(180deg,var(--gold),var(--blue));opacity:0;transition:opacity .3s}
+.imp:hover::before{opacity:1}
+.imp-icon{width:30px;height:30px;border-radius:7px;background:var(--navy);color:var(--gold);display:grid;place-items:center;font-weight:900;font-size:14px;margin-bottom:10px;font-family:'Fraunces',serif;font-style:italic;transition:transform .4s var(--ease)}
+.imp:hover .imp-icon{transform:rotate(-8deg) scale(1.08)}
+.imp h4{font-weight:700;font-size:16px;letter-spacing:-.01em;margin-bottom:6px;color:var(--navy)}
+.imp p{font-size:12.5px;line-height:1.5;color:var(--gray)}
+
+/* ============ PAGE 8: READING ============ */
+.reading{display:flex;flex-direction:column}
+.reading .eyebrow{margin-bottom:14px}
+.reading h2{margin-bottom:18px}
+.reading-list{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+@media(max-width:980px){.reading-list{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.reading-list{grid-template-columns:1fr}}
+.read{display:flex;flex-direction:column;justify-content:space-between;padding:16px 18px;background:#fff;border:1px solid var(--line);border-radius:10px;transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease);min-height:110px;position:relative;overflow:hidden;opacity:0;transform:translateY(18px)}
+.page.now .read{opacity:1;transform:translateY(0);transition:opacity .7s var(--ease-out) var(--d,0s),transform .7s var(--ease-out) var(--d,0s),box-shadow .35s var(--ease),border-color .35s var(--ease)}
+.read:hover{transform:translateY(-2px);box-shadow:0 14px 28px -14px rgba(0,15,43,.18);border-color:var(--navy)}
+.read .date{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;color:var(--blue);font-weight:600;text-transform:uppercase;margin-bottom:6px}
+.read h4{font-weight:700;font-size:13px;letter-spacing:-.01em;color:var(--navy);line-height:1.25;margin-bottom:6px}
+.read .arr{margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;color:var(--blue);text-transform:uppercase;font-weight:600;display:flex;align-items:center;gap:5px;transition:gap .25s,color .25s}
+.read:hover .arr{gap:10px;color:var(--navy)}
+.thanks{margin-top:auto;padding:18px 22px;border-radius:12px;background:var(--navy-ink);color:#fff;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;position:relative;overflow:hidden}
+.thanks::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 100% 50%,rgba(255,191,63,.2),transparent 55%);pointer-events:none}
+.thanks-text{font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:clamp(15px,1.4vw,19px);max-width:520px;line-height:1.3;position:relative}
+.thanks-text b{color:var(--gold);font-family:'Cera Pro';font-style:normal;font-weight:700}
+.restart{display:inline-flex;align-items:center;gap:9px;padding:10px 16px;background:rgba(255,255,255,.08);color:var(--gold);border-radius:99px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;border:1px solid rgba(255,191,63,.3);transition:all .25s var(--ease);position:relative;cursor:pointer}
+.restart:hover{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+  <main class="deck-stage" id="stage">
+
+    <!-- =============== PAGE 1 — HERSTATT =============== -->
+    <section class="page now" data-title="The Problem">
+      <div class="page-body">
+        <div class="herstatt">
+          <div class="year-ghost fade" style="--d:.4s">1974</div>
+          <div class="herstatt-left">
+            <div class="eyebrow fade" style="--d:.1s"><span class="seq">01</span>The Origin Story</div>
+            <h2 class="display dx-3 rise" style="--d:.2s">The day <span class="blue-it">"settlement risk"</span> was born.</h2>
+            <div class="story">
+              <p class="first rise" style="--d:.45s">It was a sunny June day in 1974 when Herstatt Bank — a German community bank — had thousands of dollar payments queued for New York. Because of the time difference, no NY bank was open before Herstatt closed at 4:30.</p>
+              <p class="rise" style="--d:.6s">By 5 PM, regulators had shut Herstatt down. The dollar leg of every one of those trades simply never arrived.</p>
+              <p class="pull rise" style="--d:.75s">Fifty years later, tokenized deposits are about to do something the wire system never managed: kill <em>Herstatt risk</em> for good.</p>
+            </div>
+          </div>
+          <div class="scale-in" style="--d:.3s">
+            <div class="flight-stage" aria-hidden="true">
+              <svg viewBox="0 0 500 380">
+                <defs>
+                  <radialGradient id="pinG" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#FFD27A"/><stop offset="100%" stop-color="#FFBF3F"/>
+                  </radialGradient>
+                  <linearGradient id="pinShadow" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#002D72"/><stop offset="100%" stop-color="#001A47"/>
+                  </linearGradient>
+                </defs>
+                <path d="M 90 130 Q 250 80 410 130" stroke="#DDE1E7" stroke-width="2" stroke-dasharray="3 6" fill="none"/>
+                <path d="M 90 130 Q 250 80 410 130" class="payment-trail"/>
+                <g class="flight-pin">
+                  <circle cx="90" cy="130" r="22" fill="rgba(9,96,187,.15)" class="glow"/>
+                  <circle cx="90" cy="130" r="14" fill="url(#pinShadow)"/>
+                  <circle cx="90" cy="130" r="5" fill="#FFBF3F"/>
+                  <text x="90" y="93" text-anchor="middle" font-family="JetBrains Mono" font-size="10" font-weight="700" letter-spacing="2.5" fill="#002D72">COLOGNE</text>
+                  <text x="90" y="170" text-anchor="middle" font-family="Cera Pro" font-size="13" font-weight="700" fill="#002D72">Herstatt Bank</text>
+                  <text x="90" y="188" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#D8443C" font-weight="600">04:30 CEST · closing</text>
+                </g>
+                <g class="flight-pin">
+                  <circle cx="410" cy="130" r="22" fill="rgba(9,96,187,.15)"/>
+                  <circle cx="410" cy="130" r="14" fill="url(#pinShadow)"/>
+                  <circle cx="410" cy="130" r="5" fill="#FFBF3F"/>
+                  <text x="410" y="93" text-anchor="middle" font-family="JetBrains Mono" font-size="10" font-weight="700" letter-spacing="2.5" fill="#002D72">NEW YORK</text>
+                  <text x="410" y="170" text-anchor="middle" font-family="Cera Pro" font-size="13" font-weight="700" fill="#002D72">Counterparty</text>
+                  <text x="410" y="188" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#8A8E96" font-weight="600">10:30 EST · awaiting USD</text>
+                </g>
+                <g transform="translate(250,105)">
+                  <g class="payment-fail-x">
+                    <circle cx="0" cy="0" r="22" fill="#fff" stroke="#D8443C" stroke-width="2"/>
+                    <circle cx="0" cy="0" r="22" fill="#D8443C" opacity=".12"/>
+                    <line x1="-10" y1="-10" x2="10" y2="10" stroke="#D8443C" stroke-width="3.5" stroke-linecap="round"/>
+                    <line x1="10" y1="-10" x2="-10" y2="10" stroke="#D8443C" stroke-width="3.5" stroke-linecap="round"/>
+                  </g>
+                </g>
+                <circle r="8" fill="url(#pinG)" class="payment-dot" stroke="#002D72" stroke-width="2"/>
+                <g transform="translate(250,250)">
+                  <g class="failure-stamp">
+                    <rect x="-110" y="-26" width="220" height="52" rx="6" fill="rgba(245,246,248,.97)" stroke="#D8443C" stroke-width="3"/>
+                    <text x="0" y="7" text-anchor="middle" font-family="JetBrains Mono" font-size="19" font-weight="700" letter-spacing="3.5" fill="#D8443C">UNSETTLED</text>
+                  </g>
+                </g>
+                <g transform="translate(0,330)">
+                  <line x1="60" y1="0" x2="440" y2="0" stroke="#DDE1E7" stroke-width="2"/>
+                  <g font-family="JetBrains Mono" font-size="9" letter-spacing="1.5">
+                    <circle cx="90" cy="0" r="4" fill="#0960BB"/>
+                    <text x="90" y="-14" text-anchor="middle" fill="#002D72" font-weight="700">MESSAGE</text>
+                    <text x="90" y="20" text-anchor="middle" fill="#8A8E96">sent</text>
+                    <circle cx="250" cy="0" r="4" fill="#D8443C"/>
+                    <text x="250" y="-14" text-anchor="middle" fill="#D8443C" font-weight="700">REGULATORY</text>
+                    <text x="250" y="20" text-anchor="middle" fill="#D8443C">close</text>
+                    <circle cx="410" cy="0" r="4" fill="#DDE1E7" stroke="#8A8E96" stroke-width="1"/>
+                    <text x="410" y="-14" text-anchor="middle" fill="#8A8E96" font-weight="700">VALUE</text>
+                    <text x="410" y="20" text-anchor="middle" fill="#D8443C" font-style="italic">never arrives</text>
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== PAGE 3 — DEFINITION =============== -->
+    <section class="page" data-title="What Is It">
+      <div class="page-body">
+        <div class="define">
+          <div class="define-left">
+            <div class="eyebrow fade" style="--d:.1s"><span class="seq">02</span>What Is It, Exactly?</div>
+            <h2 class="display dx-3 rise" style="--d:.2s">A deposit. <br>On a <span class="blue-it">blockchain.</span> <br>Nothing more. Nothing less.</h2>
+            <p class="rise" style="--d:.45s">A <strong>tokenized deposit</strong> is exactly what it sounds like — a regular bank deposit, represented as a token on a distributed ledger.</p>
+            <p class="rise" style="--d:.55s">The dollars still sit on the bank's balance sheet. They're still <strong>FDIC-insured</strong>. Still subject to the same BSA, sanctions, and consumer-protection rules.</p>
+            <p class="rise" style="--d:.65s">What changes is the recordkeeping — and that changes <em>everything</em>.</p>
+          </div>
+          <div class="scale-in" style="--d:.4s">
+            <div class="morph-stage">
+              <div class="ledger-panel before">
+                <div class="lp-label"><span class="lp-dot"></span>Today · Bank Core Ledger</div>
+                <div class="agg-row">
+                  <div class="agg-name"><b>Aggregate</b>One opaque pool</div>
+                  <div class="agg-value" id="aggCount">$0</div>
+                </div>
+                <div class="agg-meta">Reconcile T+1 · T+2 · ownership unknown until catch-up</div>
+              </div>
+              <div class="morph-arrow">
+                <div class="pulse-ring"></div>
+                <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+                <div class="morph-arrow-label">Tokenize</div>
+              </div>
+              <div class="ledger-panel after">
+                <div class="lp-label"><span class="lp-dot"></span>Tomorrow · Token Ledger</div>
+                <div class="token-rows" id="tokenRows">
+                  <div class="token-row"><span class="tk-dot"></span><span class="tk-addr">0x4A…Smith</span><span class="tk-amt">$1,240,000</span></div>
+                  <div class="token-row"><span class="tk-dot"></span><span class="tk-addr">0x9B…LLC</span><span class="tk-amt">$1,850,000</span></div>
+                  <div class="token-row"><span class="tk-dot"></span><span class="tk-addr">0x33…Trust</span><span class="tk-amt">$640,000</span></div>
+                  <div class="token-row"><span class="tk-dot"></span><span class="tk-addr">0x77…Acme</span><span class="tk-amt">$720,000</span></div>
+                  <div class="token-row"><span class="tk-dot"></span><span class="tk-addr">0x12…Diaz</span><span class="tk-amt">$370,000</span></div>
+                </div>
+                <div class="tk-total"><span>Reconciles · 1 block</span><b>$4,820,000</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== PAGE 4 — SUPERPOWERS =============== -->
+    <section class="page powers" data-title="The Superpowers">
+      <div class="page-body">
+        <div class="eyebrow on-dark fade" style="--d:.1s"><span class="seq">03</span>The Six Superpowers</div>
+        <h2 class="display dx-3 rise" style="--d:.2s">What a deposit can do when it's <span class="gold-it">re-engineered</span> for the internet.</h2>
+        <div class="powers-grid">
+          <div class="power" style="--d:.4s">
+            <div class="power-num">01</div>
+            <h3>Money that never sleeps.</h3>
+            <p>Settles 24/7/365. No cut-off times, no Fed holidays, no Friday scramble.</p>
+            <div class="gfx"><div class="dial"><svg viewBox="0 0 80 80"><circle class="dial-c1" cx="40" cy="40" r="35"/><circle class="dial-c2" cx="40" cy="40" r="35"/></svg><div class="dial-text">24/7<small>365 DAYS</small></div></div></div>
+          </div>
+          <div class="power" style="--d:.5s">
+            <div class="power-num">02</div>
+            <h3>Every dollar, a named owner.</h3>
+            <p>No omnibus. Clear legal title on an immutable ledger.</p>
+            <div class="gfx"><div class="lv"><div class="lv-col old"><div class="lbl">Omnibus</div><div class="lv-row"><span>???</span><span>$?</span></div><div class="lv-row"><span>???</span><span>$?</span></div></div><div class="lv-col new"><div class="lbl">Token</div><div class="lv-row"><span>0x4A…</span><span>$420</span></div><div class="lv-row"><span>0x9B…</span><span>$8.2k</span></div></div></div></div>
+          </div>
+          <div class="power" style="--d:.6s">
+            <div class="power-num">03</div>
+            <h3>Message + value, fused.</h3>
+            <p>Wire, ACH, check: message first, value follows. Tokens travel as one.</p>
+            <div class="gfx"><div class="atom"><svg viewBox="0 0 130 50"><line x1="10" y1="25" x2="120" y2="25" stroke="rgba(255,255,255,.15)" stroke-width="1"/><path d="M10,25 L120,25" class="atom-pulse"/><circle cx="10" cy="25" r="5" fill="#0960BB"/><circle cx="120" cy="25" r="5" fill="#0960BB"/><circle r="8" fill="#FFBF3F"><animate attributeName="cx" from="10" to="120" dur="2.4s" repeatCount="indefinite"/><animate attributeName="cy" to="25" dur="2.4s" repeatCount="indefinite"/></circle></svg></div></div>
+          </div>
+          <div class="power" style="--d:.7s">
+            <div class="power-num">04</div>
+            <h3>Self-executing money.</h3>
+            <p>Smart contracts encode fees, KYC, escrow — directly into the token.</p>
+            <div class="gfx"><div class="code-mini"><div><span class="c">// Token rule</span></div><div><span class="k">if</span> balance &gt;= <span class="s">10_000</span> {</div><div>&nbsp;&nbsp;rate = <span class="s">4.25%</span></div><div>}<span class="curs"></span></div></div></div>
+          </div>
+          <div class="power" style="--d:.8s">
+            <div class="power-num">05</div>
+            <h3>Crosses chains, borders.</h3>
+            <p>No respondent bank required. Move between chains, between countries.</p>
+            <div class="gfx"><div class="orbits"><div class="o"></div><div class="o"></div><div class="o"></div></div></div>
+          </div>
+          <div class="power" style="--d:.9s">
+            <div class="power-num">06</div>
+            <h3>Money your customer's AI can use.</h3>
+            <p>Agents can't hold accounts, but they can hold tokens. The next commerce rail.</p>
+            <div class="gfx"><div class="agent"><svg viewBox="0 0 130 60"><circle cx="65" cy="30" r="12" fill="#FFBF3F"/><text x="65" y="34" text-anchor="middle" fill="#002D72" font-family="Cera Pro" font-weight="900" font-size="9">AI</text><circle cx="20" cy="15" r="5" fill="rgba(9,96,187,.4)" stroke="#0960BB" stroke-width="1"/><circle cx="110" cy="15" r="5" fill="rgba(9,96,187,.4)" stroke="#0960BB" stroke-width="1"/><circle cx="20" cy="45" r="5" fill="rgba(9,96,187,.4)" stroke="#0960BB" stroke-width="1"/><circle cx="110" cy="45" r="5" fill="rgba(9,96,187,.4)" stroke="#0960BB" stroke-width="1"/><path class="flow" d="M25,18 Q 45,24 53,28"/><path class="flow" d="M105,18 Q 85,24 77,28"/><path class="flow" d="M25,42 Q 45,36 53,32"/><path class="flow" d="M105,42 Q 85,36 77,32"/></svg></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== PAGE 5 — vs STABLECOIN =============== -->
+    <section class="page" data-title="vs Stablecoin">
+      <div class="page-body">
+        <div class="versus">
+          <div class="eyebrow fade" style="--d:.1s"><span class="seq">04</span>Tokenized Deposit vs. Stablecoin</div>
+          <h2 class="display dx-3 rise" style="--d:.2s">They look alike. <br>They are <span class="blue-it">not</span> the same instrument.</h2>
+
+          <div class="faceoff fade" style="--d:.4s">
+            <div class="faceoff-head">
+              <div class="faceoff-side td"><span class="swatch"></span>Tokenized Deposit</div>
+              <div class="faceoff-side sc"><span class="swatch"></span>Stablecoin</div>
+            </div>
+
+            <div class="faceoff-row">
+              <div class="faceoff-label">Who issues it</div>
+              <div class="faceoff-pair">
+                <div class="faceoff-cell td">A federally-insured depository institution.</div>
+                <div class="faceoff-cell sc">A non-bank registered under the GENIUS Act.</div>
+              </div>
+            </div>
+
+            <div class="faceoff-row">
+              <div class="faceoff-label">FDIC insurance</div>
+              <div class="faceoff-pair">
+                <div class="faceoff-cell td"><span class="chip yes"><span class="chip-dot"></span>YES</span>A deposit is a deposit.</div>
+                <div class="faceoff-cell sc"><span class="chip no"><span class="chip-dot"></span>NO</span>Excluded by the GENIUS Act.</div>
+              </div>
+            </div>
+
+            <div class="faceoff-row">
+              <div class="faceoff-label">Balance sheet</div>
+              <div class="faceoff-pair">
+                <div class="faceoff-cell td">On-balance-sheet — fundable, lendable.</div>
+                <div class="faceoff-cell sc">Off-balance-sheet — backed 1:1 by reserves.</div>
+              </div>
+            </div>
+
+            <div class="faceoff-row">
+              <div class="faceoff-label">Pays interest</div>
+              <div class="faceoff-pair">
+                <div class="faceoff-cell td"><span class="chip yes"><span class="chip-dot"></span>YES</span>Can pay yield to the holder.</div>
+                <div class="faceoff-cell sc"><span class="chip no"><span class="chip-dot"></span>NO</span>GENIUS Act prohibits yield.</div>
+              </div>
+            </div>
+
+            <div class="faceoff-row">
+              <div class="faceoff-label">Best at</div>
+              <div class="faceoff-pair">
+                <div class="faceoff-cell td">Wholesale + commercial payments.</div>
+                <div class="faceoff-cell sc">Cross-border, agentic commerce, off-bank flows.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== PAGE 6 — REGULATORY =============== -->
+    <section class="page regulatory" data-title="The Moment">
+      <div class="page-body">
+        <div class="eyebrow on-dark fade" style="--d:.1s"><span class="seq">05</span>The Regulatory Moment</div>
+        <h2 class="display dx-3 rise" style="--d:.2s">The rails are real. <br>The rulebook is being written <span class="gold-it">in front of you.</span></h2>
+        <p class="reg-quote"><span class="qmark">"</span><span id="quoteText"></span></p>
+        <div class="reg-attr fade" style="--d:1.8s">— <strong>Travis Hill</strong>, Acting Chairman, FDIC · the FDIC's stated view through 2025–26.</div>
+        <div class="reg-grid">
+          <div class="reg-card" style="--d:1.0s">
+            <div class="yr">JUL 2025</div>
+            <h4>The GENIUS Act becomes law</h4>
+            <p>Establishes the federal framework for payment stablecoins. Rules they're <em>not</em> deposits, <em>not</em> FDIC-insured, and <em>not</em> securities.</p>
+          </div>
+          <div class="reg-card" style="--d:1.15s">
+            <div class="yr">NOV 2025</div>
+            <h4>CSBS asks for clarity</h4>
+            <p>State bank supervisors request unified guidance — confirming distributed-ledger deposits are insured to the same extent as traditional deposits.</p>
+          </div>
+          <div class="reg-card" style="--d:1.3s">
+            <div class="yr">MAR 2026</div>
+            <h4>FDIC signals a clean line</h4>
+            <p>Acting Chairman Hill announces tokenized deposits will qualify for the same insurance treatment — and payment stablecoins will <em>not</em>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== PAGE 7 — WHAT TO DO =============== -->
+    <section class="page" data-title="What To Do">
+      <div class="page-body">
+        <div class="imply">
+          <div class="eyebrow fade" style="--d:.1s"><span class="seq">06</span>What This Means For Your Bank</div>
+          <h2 class="display dx-3 rise" style="--d:.2s">Four moves worth thinking about <span class="blue-it">this quarter.</span></h2>
+          <div class="imply-grid">
+            <div class="imp" style="--d:.4s">
+              <div class="imp-icon">i</div>
+              <h4>Revisit your digital wallet strategy.</h4>
+              <p>Even if you never issue a token, your customers will hold them. The wallet is the home screen for money — and the bank that owns the wallet owns the relationship.</p>
+            </div>
+            <div class="imp" style="--d:.5s">
+              <div class="imp-icon">ii</div>
+              <h4>Plan for parallel ledgers.</h4>
+              <p>Traditional cores were never designed for 24/7/365 tokenized assets. Most banks will run synchronized ledgers — programmable rail alongside the existing core — for years.</p>
+            </div>
+            <div class="imp" style="--d:.6s">
+              <div class="imp-icon">iii</div>
+              <h4>Think about token-as-collateral.</h4>
+              <p>As Treasuries, real estate, and money-market funds tokenize, your customers will hold them in wallets. You'll want to lend against — or take them as — collateral.</p>
+            </div>
+            <div class="imp" style="--d:.7s">
+              <div class="imp-icon">iv</div>
+              <h4>Don't wait for the perfect playbook.</h4>
+              <p>The rulebook is being written in real time. Banks that engage early — cohorts, comment letters, pilots — get to shape interoperability and economics.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== PAGE 8 — READING =============== -->
+    <section class="page" data-title="Further Reading">
+      <div class="page-body">
+        <div class="reading">
+          <div class="eyebrow fade" style="--d:.1s"><span class="seq">07</span>Go Deeper · Banker-to-Banker</div>
+          <h2 class="display dx-3 rise" style="--d:.2s">Read the source articles. <br><span class="blue-it">All from SouthState Correspondent.</span></h2>
+          <div class="reading-list">
+            <a class="read" style="--d:.4s" href="https://southstatecorrespondent.com/banker-to-banker/stablecoin-tokenized-deposits/8-insights-you-need-to-know-about-tokenized-deposits/" target="_blank" rel="noopener">
+              <div><div class="date">Dec 4, 2025</div><h4>8 Insights You Need to Know About Tokenized Deposits</h4></div>
+              <div class="arr">READ →</div>
+            </a>
+            <a class="read" style="--d:.48s" href="https://southstatecorrespondent.com/banker-to-banker/innovation/every-banks-needs-to-take-another-look-at-a-digital-wallet-strategy/" target="_blank" rel="noopener">
+              <div><div class="date">Aug 13, 2025</div><h4>Every Bank Needs to Take Another Look at a Digital Wallet Strategy</h4></div>
+              <div class="arr">READ →</div>
+            </a>
+            <a class="read" style="--d:.56s" href="https://southstatecorrespondent.com/banker-to-banker/payments/6-bank-stablecoin-use-cases-and-reserve-management-options/" target="_blank" rel="noopener">
+              <div><div class="date">Oct 16, 2025</div><h4>6 Bank Stablecoin Use Cases and Reserve Management Options</h4></div>
+              <div class="arr">READ →</div>
+            </a>
+            <a class="read" style="--d:.64s" href="https://southstatecorrespondent.com/banker-to-banker/crypto/stablecoin-profitability-driving-bank-profit/" target="_blank" rel="noopener">
+              <div><div class="date">Sep 10, 2025</div><h4>Stablecoin Profitability — Driving Bank Profit</h4></div>
+              <div class="arr">READ →</div>
+            </a>
+            <a class="read" style="--d:.72s" href="https://southstatecorrespondent.com/banker-to-banker/payments/stablecoin-what-bank-executives-need-to-know/" target="_blank" rel="noopener">
+              <div><div class="date">Jul 28, 2025</div><h4>Stablecoin: What Bank Executives Need to Know</h4></div>
+              <div class="arr">READ →</div>
+            </a>
+            <a class="read" style="--d:.8s" href="https://southstatecorrespondent.com/blog/?s=Tokenized+deposit+&post_type=post" target="_blank" rel="noopener">
+              <div><div class="date">Full Archive</div><h4>All Tokenized Deposit + Stablecoin Coverage</h4></div>
+              <div class="arr">BROWSE →</div>
+            </a>
+          </div>
+          <div class="thanks">
+            <div class="thanks-text">A primer from <b>SouthState Correspondent</b>. Helping community banks compete in the next era of money.</div>
+            <button class="restart" id="restartBtn">↻ Start Over</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="deck-foot">
+    <button class="nbtn" id="prevBtn" disabled aria-label="Previous">
+      <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+      <span>Prev</span>
+    </button>
+    <div class="dots" id="dots"></div>
+    <button class="nbtn primary" id="nextBtn" aria-label="Next">
+      <span>Next</span>
+      <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+'use strict';
+
+// ============ DECK CONTROLLER ============
+var stage = document.getElementById('stage');
+var pages = Array.prototype.slice.call(stage.querySelectorAll(':scope > .page'));
+var prevBtn = document.getElementById('prevBtn');
+var nextBtn = document.getElementById('nextBtn');
+var progress = document.getElementById('progress');
+var headNum = document.getElementById('headNum');
+var headTitle = document.getElementById('headTitle');
+var headTotal = document.getElementById('headTotal');
+var dotsEl = document.getElementById('dots');
+var current = 0;
+var total = pages.length;
+var locked = false;
+if (headTotal) headTotal.textContent = String(total).padStart(2,'0');
+
+pages.forEach(function(p,i){
+  var d = document.createElement('button');
+  d.className = 'dot' + (i===0?' now':'');
+  d.dataset.title = p.dataset.title || ('Page '+(i+1));
+  d.setAttribute('aria-label','Go to '+d.dataset.title);
+  d.addEventListener('click', function(){ go(i); });
+  dotsEl.appendChild(d);
+});
+var dots = Array.prototype.slice.call(dotsEl.querySelectorAll('.dot'));
+
+if (progress) progress.style.width = (1/total*100)+'%';
+
+function go(i){
+  if (locked || i < 0 || i >= total || i === current) return;
+  locked = true;
+  pages.forEach(function(p,idx){
+    p.classList.remove('now','past');
+    if (idx === i) p.classList.add('now');
+    else if (idx < i) p.classList.add('past');
+    // Reset the scroll of the incoming page's body to the top
+    if (idx === i){
+      var body = p.querySelector('.page-body');
+      if (body) body.scrollTop = 0;
+    }
+  });
+  current = i;
+  if (progress) progress.style.width = ((i+1)/total*100)+'%';
+  if (headNum) headNum.textContent = String(i+1).padStart(2,'0');
+  if (headTitle) headTitle.textContent = pages[i].dataset.title || '';
+  dots.forEach(function(d,idx){ d.classList.toggle('now', idx===i); });
+  prevBtn.disabled = (i === 0);
+  nextBtn.disabled = (i === total-1);
+  try{ history.replaceState(null,'','#/'+(i+1)); }catch(e){}
+  try{ window.parent.postMessage({type:'PAGE_CHANGE', page:i+1, total:total}, '*'); }catch(e){}
+  onEnter(i);
+  setTimeout(function(){ locked = false; }, 650);
+}
+function next(){ go(current+1); }
+function prev(){ go(current-1); }
+
+prevBtn.addEventListener('click', prev);
+nextBtn.addEventListener('click', next);
+var beginBtn = document.getElementById('beginBtn');
+if (beginBtn) beginBtn.addEventListener('click', next);
+var restartBtn = document.getElementById('restartBtn');
+if (restartBtn) restartBtn.addEventListener('click', function(){ go(0); });
+
+document.addEventListener('keydown', function(e){
+  var t = e.target;
+  if (t && (t.tagName==='INPUT'||t.tagName==='TEXTAREA')) return;
+  if (e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){ e.preventDefault(); next(); }
+  else if (e.key==='ArrowLeft'||e.key==='PageUp'){ e.preventDefault(); prev(); }
+  else if (e.key==='Home'){ e.preventDefault(); go(0); }
+  else if (e.key==='End'){ e.preventDefault(); go(total-1); }
+  else if (/^[1-9]$/.test(e.key)){ var n=parseInt(e.key)-1; if(n<total){e.preventDefault();go(n);} }
+});
+
+var sX=0,sY=0,swiping=false;
+stage.addEventListener('touchstart', function(e){ sX=e.touches[0].clientX; sY=e.touches[0].clientY; swiping=true; }, {passive:true});
+stage.addEventListener('touchend', function(e){
+  if (!swiping) return; swiping=false;
+  var dx = e.changedTouches[0].clientX - sX;
+  var dy = e.changedTouches[0].clientY - sY;
+  if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)*1.5){ if (dx<0) next(); else prev(); }
+}, {passive:true});
+
+function fromHash(){
+  var m = (window.location.hash||'').match(/#\/?(\d+)/);
+  if (m){ var n=parseInt(m[1])-1; if(n>=0 && n<total) return n; }
+  return -1;
+}
+window.addEventListener('hashchange', function(){ var n=fromHash(); if(n>=0) go(n); });
+var initial = fromHash();
+if (initial > 0) go(initial);
+
+try{ window.parent.postMessage({type:'RESIZE', height:780}, '*'); }catch(e){}
+
+// ============ PER-PAGE ENTRY ============
+var morphTimer = null, vsToggleApplied = false;
+function onEnter(i){
+  var p = pages[i];
+  var title = p.dataset.title;
+  if (title === 'Cover') startParticles();
+  if (title === 'What Is It') runMorph();
+  if (title === 'The Moment') buildQuote();
+}
+
+// ============ COVER — PARTICLE ASSEMBLY ============
+var particleCanvas = document.getElementById('particles');
+var pctx = particleCanvas ? particleCanvas.getContext('2d') : null;
+var particles = [];
+var pStart = 0;
+var pAnimating = false;
+var pMouseX = -9999, pMouseY = -9999;
+
+function sizeCanvas(){
+  if (!particleCanvas) return;
+  var rect = particleCanvas.getBoundingClientRect();
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  particleCanvas.width = rect.width * dpr;
+  particleCanvas.height = rect.height * dpr;
+  pctx.setTransform(dpr,0,0,dpr,0,0);
+}
+
+function buildTargets(){
+  if (!particleCanvas) return [];
+  var rect = particleCanvas.getBoundingClientRect();
+  var w = rect.width, h = rect.height;
+  var cx = w/2, cy = h/2;
+  var r = Math.min(w,h) * 0.32;
+  var targets = [];
+  for (var i=0;i<6;i++){
+    var a = i*Math.PI/3 - Math.PI/2;
+    targets.push({x: cx+Math.cos(a)*r*1.55, y: cy+Math.sin(a)*r*1.55, size:4, color:'#0960BB', opacity:1});
+  }
+  for (var i=0;i<6;i++){
+    var a1 = i*Math.PI/3 - Math.PI/2;
+    var a2 = (i+1)*Math.PI/3 - Math.PI/2;
+    for (var t=0.33; t<1; t+=0.34){
+      targets.push({x: cx+Math.cos(a1)*r*1.55*(1-t)+Math.cos(a2)*r*1.55*t, y: cy+Math.sin(a1)*r*1.55*(1-t)+Math.sin(a2)*r*1.55*t, size:2, color:'#0960BB', opacity:.55});
+    }
+  }
+  for (var i=0;i<24;i++){
+    var a = i*Math.PI*2/24;
+    targets.push({x: cx+Math.cos(a)*r, y: cy+Math.sin(a)*r, size:3.2, color:'#FFBF3F', opacity:1});
+  }
+  for (var i=0;i<16;i++){
+    var a = i*Math.PI*2/16 + Math.PI/16;
+    targets.push({x: cx+Math.cos(a)*r*0.84, y: cy+Math.sin(a)*r*0.84, size:2.5, color:'#FFD27A', opacity:.85});
+  }
+  targets.push({x: cx, y: cy, size: r*0.56, color:'#FFBF3F', opacity:1, isCore:true});
+  return targets;
+}
+
+function initParticles(){
+  if (!particleCanvas) return;
+  sizeCanvas();
+  var targets = buildTargets();
+  var rect = particleCanvas.getBoundingClientRect();
+  var w = rect.width, h = rect.height;
+  particles = targets.map(function(t,i){
+    var ang = Math.random()*Math.PI*2;
+    var dist = Math.max(w,h) * (0.7 + Math.random()*0.4);
+    return {
+      x: w/2 + Math.cos(ang)*dist,
+      y: h/2 + Math.sin(ang)*dist,
+      tx: t.x, ty: t.y,
+      vx: 0, vy: 0,
+      size: t.size, color: t.color, opacity: t.opacity,
+      delay: i * 10 + Math.random()*180,
+      arrived: false, isCore: !!t.isCore
+    };
+  });
+  pStart = performance.now();
+}
+
+function drawParticles(){
+  if (!particleCanvas || !pctx) return;
+  var rect = particleCanvas.getBoundingClientRect();
+  var w = rect.width, h = rect.height;
+  pctx.clearRect(0,0,w,h);
+  var now = performance.now();
+  var elapsed = now - pStart;
+  var cx = w/2, cy = h/2;
+  var r = Math.min(w,h) * 0.32;
+  var halo = pctx.createRadialGradient(cx, cy, r*0.4, cx, cy, r*1.8);
+  halo.addColorStop(0, 'rgba(255,191,63,0.18)');
+  halo.addColorStop(1, 'rgba(255,191,63,0)');
+  pctx.fillStyle = halo;
+  pctx.fillRect(0,0,w,h);
+
+  particles.forEach(function(p){
+    if (elapsed < p.delay) return;
+    if (p.isCore){
+      var alpha = Math.min(1, (elapsed - p.delay) / 900);
+      var coreR = p.size * alpha;
+      pctx.save();
+      pctx.globalAlpha = alpha;
+      var grad = pctx.createRadialGradient(cx, cy, 0, cx, cy, coreR);
+      grad.addColorStop(0, '#FFD27A'); grad.addColorStop(0.5, '#FFBF3F'); grad.addColorStop(1, '#C68900');
+      pctx.fillStyle = '#002D72';
+      pctx.beginPath(); pctx.arc(cx, cy, coreR*1.18, 0, Math.PI*2); pctx.fill();
+      pctx.fillStyle = grad;
+      pctx.beginPath(); pctx.arc(cx, cy, coreR, 0, Math.PI*2); pctx.fill();
+      pctx.fillStyle = '#002D72';
+      pctx.font = '900 italic ' + (coreR*1.7) + 'px Fraunces, serif';
+      pctx.textAlign = 'center'; pctx.textBaseline = 'middle';
+      pctx.fillText('$', cx, cy + coreR*0.06);
+      pctx.restore();
+      return;
+    }
+    var dx = p.tx - p.x, dy = p.ty - p.y;
+    var dist = Math.sqrt(dx*dx + dy*dy);
+    var offsetX = 0, offsetY = 0;
+    if (p.arrived){
+      var mdx = pMouseX - p.tx, mdy = pMouseY - p.ty;
+      var mdist = Math.sqrt(mdx*mdx + mdy*mdy);
+      if (mdist < 110){
+        var pull = (110 - mdist) / 110;
+        offsetX = -mdx * pull * 0.22;
+        offsetY = -mdy * pull * 0.22;
+      }
+    }
+    if (dist > 0.5){
+      p.vx += dx * 0.06; p.vy += dy * 0.06;
+      p.vx *= 0.82; p.vy *= 0.82;
+      p.x += p.vx; p.y += p.vy;
+    } else {
+      p.arrived = true;
+      var breath = Math.sin(now * 0.001 + p.tx * 0.01) * 0.5;
+      p.x = p.tx + breath + offsetX;
+      p.y = p.ty + breath + offsetY;
+    }
+    pctx.save();
+    pctx.globalAlpha = p.opacity;
+    pctx.fillStyle = p.color;
+    pctx.beginPath();
+    pctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+    pctx.fill();
+    pctx.restore();
+  });
+  requestAnimationFrame(drawParticles);
+}
+
+function startParticles(){
+  if (!particleCanvas || pAnimating) return;
+  pAnimating = true;
+  initParticles();
+  drawParticles();
+}
+
+if (particleCanvas){
+  particleCanvas.addEventListener('mousemove', function(e){
+    var rect = particleCanvas.getBoundingClientRect();
+    pMouseX = e.clientX - rect.left;
+    pMouseY = e.clientY - rect.top;
+  });
+  particleCanvas.addEventListener('mouseleave', function(){ pMouseX = -9999; pMouseY = -9999; });
+}
+
+window.addEventListener('resize', function(){
+  if (pAnimating) initParticles();
+});
+
+if (document.readyState === 'complete') startParticles();
+else window.addEventListener('load', startParticles);
+
+// ============ PAGE 3 — DEFINITION MORPH ============
+function runMorph(){
+  if (morphTimer) clearTimeout(morphTimer);
+  var aggEl = document.getElementById('aggCount');
+  var rows = document.querySelectorAll('#tokenRows .token-row');
+  if (!aggEl) return;
+  rows.forEach(function(r){ r.classList.remove('in'); });
+  // Counter animation 0 → 4,820,000
+  var start = performance.now();
+  var duration = 1400;
+  function tick(now){
+    var t = Math.min(1, (now - start) / duration);
+    var eased = 1 - Math.pow(1-t, 3);
+    var val = Math.floor(4820000 * eased);
+    aggEl.textContent = '$' + val.toLocaleString();
+    if (t < 1) requestAnimationFrame(tick);
+    else aggEl.textContent = '$4,820,000';
+  }
+  requestAnimationFrame(tick);
+  // Token rows appear sequentially after counter completes
+  rows.forEach(function(r, i){
+    setTimeout(function(){ r.classList.add('in'); }, 1700 + i * 220);
+  });
+}
+
+// ============ PAGE 6 — QUOTE BUILDER ============
+var quoteBuilt = false;
+function buildQuote(){
+  var el = document.getElementById('quoteText');
+  if (!el) return;
+  el.innerHTML = '';
+  var full = 'A deposit <em>is</em> a deposit.<span style="color:var(--gold)">"</span>';
+  var plain = 'A deposit is a deposit."';
+  var i = 0;
+  // type out plain text first
+  function typeChar(){
+    if (i <= plain.length){
+      var partial = plain.slice(0, i);
+      // Convert "is" to bold when reached
+      el.innerHTML = partial.replace(/\bis\b/, '<em>is</em>');
+      i++;
+      setTimeout(typeChar, 60);
+    }
+  }
+  setTimeout(typeChar, 700);
+}
+
+})();
+</script>
+</body>
+</html>
