@@ -7,11 +7,18 @@
 <meta name="description" content="An interactive primer on tokenized deposits from SouthState Correspondent.">
 
 <style>
-@font-face{font-family:'Cera Pro';src:url('https://sscdwidgets.github.io/fonts/CeraPro-Light.woff2') format('woff2');font-weight:300;font-display:swap}
-@font-face{font-family:'Cera Pro';src:url('https://sscdwidgets.github.io/fonts/CeraPro-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
-@font-face{font-family:'Cera Pro';src:url('https://sscdwidgets.github.io/fonts/CeraPro-Medium.woff2') format('woff2');font-weight:500;font-display:swap}
-@font-face{font-family:'Cera Pro';src:url('https://sscdwidgets.github.io/fonts/CeraPro-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
-@font-face{font-family:'Cera Pro';src:url('https://sscdwidgets.github.io/fonts/CeraPro-Black.woff2') format('woff2');font-weight:900;font-display:swap}
+@font-face{font-family:'Cera Pro';src:url('https://sscdwidgets.github.io/fonts/CeraPro-Thin.ttf') format('truetype');font-weight:100;font-style:normal;font-display:swap}
+@font-face{font-family:'Cera Pro';src:url('https://sscdwidgets.github.io/fonts/CeraPro-ThinItalic.ttf') format('truetype');font-weight:100;font-style:italic;font-display:swap}
+@font-face{font-family:'Cera Pro';src:url('https://sscdwidgets.github.io/fonts/CeraPro-Light.ttf') format('truetype');font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:'Cera Pro';src:url('https://sscdwidgets.github.io/fonts/CeraPro-LightItalic.ttf') format('truetype');font-weight:300;font-style:italic;font-display:swap}
+@font-face{font-family:'Cera Pro';src:url('https://sscdwidgets.github.io/fonts/CeraPro-Regular.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Cera Pro';src:url('https://sscdwidgets.github.io/fonts/CeraPro-Italic.ttf') format('truetype');font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:'Cera Pro';src:url('https://sscdwidgets.github.io/fonts/CeraPro-Medium.ttf') format('truetype');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Cera Pro';src:url('https://sscdwidgets.github.io/fonts/CeraPro-MediumItalic.ttf') format('truetype');font-weight:500;font-style:italic;font-display:swap}
+@font-face{font-family:'Cera Pro';src:url('https://sscdwidgets.github.io/fonts/CeraPro-Bold.ttf') format('truetype');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:'Cera Pro';src:url('https://sscdwidgets.github.io/fonts/CeraPro-BoldItalic.ttf') format('truetype');font-weight:700;font-style:italic;font-display:swap}
+@font-face{font-family:'Cera Pro';src:url('https://sscdwidgets.github.io/fonts/CeraPro-Black.ttf') format('truetype');font-weight:900;font-style:normal;font-display:swap}
+@font-face{font-family:'Cera Pro';src:url('https://sscdwidgets.github.io/fonts/CeraPro-BlackItalic.ttf') format('truetype');font-weight:900;font-style:italic;font-display:swap}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -208,7 +215,8 @@ img,svg,canvas{display:block;max-width:100%}
 .powers::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 0%,rgba(9,96,187,.35),transparent 50%),radial-gradient(circle at 0% 100%,rgba(255,191,63,.1),transparent 45%);pointer-events:none}
 .powers .page-body{z-index:1}
 .powers .eyebrow{margin-bottom:14px}
-.powers h2{margin-bottom:18px;color:#fff;max-width:28ch}
+.powers h2{margin-bottom:18px;color:#fff;max-width:none}
+@media(min-width:900px){.powers h2{white-space:nowrap}}
 .powers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 @media(max-width:880px){.powers-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:520px){.powers-grid{grid-template-columns:1fr}}
@@ -629,19 +637,19 @@ img,svg,canvas{display:block;max-width:100%}
           <div class="imply-grid">
             <div class="imp" style="--d:.4s">
               <h4>Revisit your digital wallet strategy.</h4>
-              <p>Even if you never issue a token, your customers will hold them. The wallet is the home screen for money — and the bank that owns the wallet owns the relationship.</p>
+              <p>Even if you never issue a token, your customers will hold them — in third-party wallets you don't control. The wallet, not the account, is becoming the home screen for money. The institution that owns the wallet owns the primary relationship; everyone else is just a back-end utility.</p>
             </div>
             <div class="imp" style="--d:.5s">
               <h4>Plan for parallel ledgers.</h4>
-              <p>Traditional cores were never designed for 24/7/365 tokenized assets. Most banks will run synchronized ledgers — programmable rail alongside the existing core — for years.</p>
+              <p>Traditional cores weren't built for 24/7/365 tokenized assets. Most banks will end up running synchronized ledgers — a programmable rail alongside the legacy core — for years. Start scoping integration partners, reconciliation patterns, and the operational model now. This is a multi-year migration, not a one-quarter project.</p>
             </div>
             <div class="imp" style="--d:.6s">
               <h4>Think about token-as-collateral.</h4>
-              <p>As Treasuries, real estate, and money-market funds tokenize, your customers will hold them in wallets. You'll want to lend against — or take them as — collateral.</p>
+              <p>As Treasuries, money-market funds, and eventually real estate tokenize, customers will hold those assets in wallets rather than custody accounts. You'll want both the ability to lend against tokenized holdings and the operational rails to accept tokens as collateral on existing loans. The institutions that solve token collateral first will unlock a new lending margin.</p>
             </div>
             <div class="imp" style="--d:.7s">
               <h4>Don't wait for the perfect playbook.</h4>
-              <p>The rulebook is being written in real time. Banks that engage early — cohorts, comment letters, pilots — get to shape interoperability and economics.</p>
+              <p>The rulebook is being written in real time across the FDIC, OCC, Fed, and state regulators. Banks that engage early — through trade-association cohorts, comment letters, and pilot programs — get to shape the interoperability standards, liquidity mechanisms, and economics of issuance. Late movers inherit whatever the early ones built.</p>
             </div>
           </div>
         </div>
