@@ -26,7 +26,7 @@
   --paper:#F5F6F8; --paper-2:#EAEDF1; --line:#DDE1E7;
   --green:#3EB489; --red:#D8443C;
   --ease:cubic-bezier(.2,.7,.2,1); --ease-out:cubic-bezier(.16,1,.3,1);
-  --head:0px; --foot:78px;
+  --head:0px; --foot:60px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;overflow:hidden;background:var(--paper);color:var(--navy-ink);font-family:'Cera Pro',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
@@ -41,9 +41,9 @@ img,svg,canvas{display:block;max-width:100%}
 .eyebrow.on-dark{color:var(--gold)}
 .eyebrow.on-dark .seq{color:#fff}
 .display{font-family:'Cera Pro';font-weight:900;letter-spacing:-.035em;line-height:.95}
-.dx-1{font-size:clamp(48px,7vw,108px)}
-.dx-2{font-size:clamp(36px,5vw,72px)}
-.dx-3{font-size:clamp(26px,3.2vw,42px)}
+.dx-1{font-size:clamp(44px,6vw,88px);text-wrap:balance}
+.dx-2{font-size:clamp(32px,4.2vw,60px);text-wrap:balance}
+.dx-3{font-size:clamp(22px,2.4vw,30px);text-wrap:balance;line-height:1.05}
 .dx-4{font-size:clamp(22px,2.4vw,32px)}
 .gold-it{color:var(--gold);font-family:'Fraunces',serif;font-weight:900;font-style:italic}
 .blue-it{color:var(--blue);font-family:'Fraunces',serif;font-weight:900;font-style:italic}
@@ -70,22 +70,22 @@ img,svg,canvas{display:block;max-width:100%}
 .page{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .5s var(--ease),transform .65s var(--ease-out),filter .45s var(--ease);transform:translate3d(60px,0,0);filter:blur(8px);will-change:opacity,transform,filter}
 .page.now{opacity:1;pointer-events:auto;transform:translate3d(0,0,0);filter:blur(0);z-index:2}
 .page.past{transform:translate3d(-60px,0,0);filter:blur(8px);z-index:1}
-.page-body{position:absolute;inset:0;display:flex;flex-direction:column;padding:clamp(28px,4vh,54px) clamp(24px,4vw,72px);max-width:1320px;margin:0 auto;width:100%;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+.page-body{position:absolute;inset:0;display:flex;flex-direction:column;padding:clamp(22px,3vh,40px) clamp(24px,4vw,72px);max-width:1320px;margin:0 auto;width:100%;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
 
 .deck-foot{height:var(--foot);flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,3vw,40px);border-top:1px solid rgba(0,45,114,.07);background:rgba(245,246,248,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);position:relative;z-index:10}
-.nbtn{display:inline-flex;align-items:center;gap:12px;padding:15px 28px;border-radius:99px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.16em;font-weight:700;text-transform:uppercase;background:#fff;border:1.5px solid var(--navy);color:var(--navy);transition:all .25s var(--ease);box-shadow:0 6px 18px -6px rgba(0,15,43,.28)}
+.nbtn{display:inline-flex;align-items:center;gap:10px;padding:11px 22px;border-radius:99px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.16em;font-weight:700;text-transform:uppercase;background:#fff;border:1.5px solid var(--navy);color:var(--navy);transition:all .25s var(--ease);box-shadow:0 6px 18px -6px rgba(0,15,43,.28)}
 .nbtn:hover:not(:disabled){background:var(--navy);color:#fff;transform:translateY(-2px);box-shadow:0 14px 28px -8px rgba(0,15,43,.5)}
 .nbtn:hover:not(:disabled) svg{stroke:#fff}
 .nbtn:disabled{opacity:.32;cursor:default;border-color:var(--line);box-shadow:none}
 .nbtn:disabled svg{stroke:var(--gray-mid)}
-.nbtn svg{width:18px;height:18px;stroke:var(--navy);stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:stroke .25s var(--ease)}
+.nbtn svg{width:16px;height:16px;stroke:var(--navy);stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:stroke .25s var(--ease)}
 .nbtn.primary{background:var(--navy);color:var(--gold);border-color:var(--navy);box-shadow:0 10px 24px -8px rgba(0,15,43,.5),inset 0 0 0 1px rgba(255,191,63,.18)}
 .nbtn.primary svg{stroke:var(--gold)}
 .nbtn.primary:hover:not(:disabled){background:var(--navy-ink);color:var(--gold);transform:translateY(-2px);box-shadow:0 18px 34px -10px rgba(0,15,43,.6),inset 0 0 0 1px rgba(255,191,63,.3)}
 .nbtn.primary:hover:not(:disabled) svg{stroke:var(--gold)}
 .nbtn.primary:disabled{background:#fff;color:var(--gray-mid);border-color:var(--line);box-shadow:none}
 .nbtn.primary:disabled svg{stroke:var(--gray-mid)}
-@media(max-width:540px){.nbtn span{display:none}.nbtn{padding:15px 18px}}
+@media(max-width:540px){.nbtn span{display:none}.nbtn{padding:11px 14px}}
 .dots{display:flex;gap:7px;align-items:center;flex:1;justify-content:center}
 .dot{width:7px;height:7px;border-radius:50%;background:var(--gray-soft);transition:all .35s var(--ease);position:relative;padding:0;border:none;cursor:pointer}
 .dot::before{content:attr(data-title);position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;background:var(--navy);color:#fff;padding:5px 9px;border-radius:5px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;font-weight:600}
@@ -210,7 +210,7 @@ img,svg,canvas{display:block;max-width:100%}
 .powers::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 0%,rgba(9,96,187,.35),transparent 50%),radial-gradient(circle at 0% 100%,rgba(255,191,63,.1),transparent 45%);pointer-events:none}
 .powers .page-body{z-index:1}
 .powers .eyebrow{margin-bottom:14px}
-.powers h2{margin-bottom:26px;color:#fff;max-width:18ch}
+.powers h2{margin-bottom:18px;color:#fff;max-width:28ch}
 .powers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 @media(max-width:880px){.powers-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:520px){.powers-grid{grid-template-columns:1fr}}
@@ -266,7 +266,7 @@ img,svg,canvas{display:block;max-width:100%}
 /* ============ PAGE 5: VS STABLECOIN ============ */
 .versus{display:flex;flex-direction:column}
 .versus .eyebrow{margin-bottom:12px}
-.versus h2{margin-bottom:20px}
+.versus h2{margin-bottom:14px}
 .versus-intro{font-family:'Fraunces',serif;font-size:clamp(14px,1.15vw,17px);line-height:1.45;color:var(--gray);margin-bottom:14px;max-width:680px;font-style:italic}
 
 /* Face-off comparison panel */
@@ -308,7 +308,7 @@ img,svg,canvas{display:block;max-width:100%}
 .regulatory::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 100% 0%,rgba(255,191,63,.18),transparent 50%),radial-gradient(ellipse at 0% 100%,rgba(9,96,187,.4),transparent 45%);pointer-events:none}
 .regulatory .page-body{z-index:1}
 .regulatory .eyebrow{margin-bottom:14px}
-.regulatory h2{margin-bottom:24px;color:#fff;max-width:18ch}
+.regulatory h2{margin-bottom:18px;color:#fff;max-width:32ch}
 .reg-quote{font-family:'Fraunces',serif;font-weight:300;font-style:italic;font-size:clamp(28px,4.2vw,56px);line-height:1.12;letter-spacing:-.02em;max-width:920px;margin:0 0 14px;position:relative;z-index:1;min-height:1.2em}
 .reg-quote .qmark{color:var(--gold);font-size:1.4em;line-height:0;display:inline-block;transform:translateY(.18em);margin-right:6px}
 .reg-quote em{color:var(--gold);font-style:italic;display:inline-block;transform-origin:center}
@@ -330,7 +330,7 @@ img,svg,canvas{display:block;max-width:100%}
 /* ============ PAGE 7: WHAT TO DO ============ */
 .imply{display:flex;flex-direction:column}
 .imply .eyebrow{margin-bottom:14px}
-.imply h2{margin-bottom:24px}
+.imply h2{margin-bottom:18px}
 .imply-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 @media(max-width:780px){.imply-grid{grid-template-columns:1fr}}
 .imp{padding:20px 22px;border-radius:14px;background:#fff;border:1px solid var(--line);position:relative;overflow:hidden;transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease);opacity:0;transform:translateY(20px);display:flex;flex-direction:column}
@@ -338,7 +338,7 @@ img,svg,canvas{display:block;max-width:100%}
 .imp:hover{transform:translateY(-3px);box-shadow:0 16px 30px -16px rgba(0,15,43,.18);border-color:var(--gold)}
 .imp::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(180deg,var(--gold),var(--blue));opacity:0;transition:opacity .3s}
 .imp:hover::before{opacity:1}
-.imp-icon{width:30px;height:30px;border-radius:7px;background:var(--navy);color:var(--gold);display:grid;place-items:center;font-weight:900;font-size:14px;margin-bottom:10px;font-family:'Fraunces',serif;font-style:italic;transition:transform .4s var(--ease)}
+.imp-icon{width:30px;height:30px;border-radius:7px;background:var(--navy);color:var(--gold);display:grid;place-items:center;font-weight:900;font-size:14px;margin-bottom:10px;font-family:'Cera Pro',sans-serif;letter-spacing:-.02em;transition:transform .4s var(--ease)}
 .imp:hover .imp-icon{transform:rotate(-8deg) scale(1.08)}
 .imp h4{font-weight:700;font-size:16px;letter-spacing:-.01em;margin-bottom:6px;color:var(--navy)}
 .imp p{font-size:12.5px;line-height:1.5;color:var(--gray)}
@@ -456,7 +456,7 @@ img,svg,canvas{display:block;max-width:100%}
         <div class="define">
           <div class="define-left">
             <div class="eyebrow fade" style="--d:.1s"><span class="seq">02</span>What Is It, Exactly?</div>
-            <h2 class="display dx-3 rise" style="--d:.2s">A deposit. <br>On a <span class="blue-it">blockchain.</span> <br>Nothing more. Nothing less.</h2>
+            <h2 class="display dx-3 rise" style="--d:.2s">A deposit. On a <span class="blue-it">blockchain.</span></h2>
             <p class="rise" style="--d:.45s">A <strong>tokenized deposit</strong> is exactly what it sounds like — a regular bank deposit, represented as a token on a distributed ledger.</p>
             <p class="rise" style="--d:.55s">The dollars still sit on the bank's balance sheet. They're still <strong>FDIC-insured</strong>. Still subject to the same BSA, sanctions, and consumer-protection rules.</p>
             <p class="rise" style="--d:.65s">What changes is the recordkeeping — and that changes <em>everything</em>.</p>
@@ -497,7 +497,7 @@ img,svg,canvas{display:block;max-width:100%}
     <section class="page powers" data-title="The Superpowers">
       <div class="page-body">
         <div class="eyebrow on-dark fade" style="--d:.1s"><span class="seq">03</span>The Six Superpowers</div>
-        <h2 class="display dx-3 rise" style="--d:.2s">What a deposit can do when it's <span class="gold-it">re-engineered</span> for the internet.</h2>
+        <h2 class="display dx-3 rise" style="--d:.2s">A deposit, <span class="gold-it">re-engineered</span> for the internet.</h2>
         <div class="powers-grid">
           <div class="power" style="--d:.4s">
             <div class="power-num">01</div>
@@ -544,7 +544,7 @@ img,svg,canvas{display:block;max-width:100%}
       <div class="page-body">
         <div class="versus">
           <div class="eyebrow fade" style="--d:.1s"><span class="seq">04</span>Tokenized Deposit vs. Stablecoin</div>
-          <h2 class="display dx-3 rise" style="--d:.2s">They look alike. <br>They are <span class="blue-it">not</span> the same instrument.</h2>
+          <h2 class="display dx-3 rise" style="--d:.2s">They look alike. They are <span class="blue-it">not</span> the same instrument.</h2>
 
           <div class="faceoff fade" style="--d:.4s">
             <div class="faceoff-head">
@@ -600,7 +600,7 @@ img,svg,canvas{display:block;max-width:100%}
     <section class="page regulatory" data-title="The Moment">
       <div class="page-body">
         <div class="eyebrow on-dark fade" style="--d:.1s"><span class="seq">05</span>The Regulatory Moment</div>
-        <h2 class="display dx-3 rise" style="--d:.2s">The rails are real. <br>The rulebook is being written <span class="gold-it">in front of you.</span></h2>
+        <h2 class="display dx-3 rise" style="--d:.2s">The rails are real. The rulebook is <span class="gold-it">still being written.</span></h2>
         <p class="reg-quote"><span class="qmark">"</span><span id="quoteText"></span></p>
         <div class="reg-attr fade" style="--d:1.8s">— <strong>Travis Hill</strong>, Acting Chairman, FDIC · the FDIC's stated view through 2025–26.</div>
         <div class="reg-grid">
@@ -631,22 +631,18 @@ img,svg,canvas{display:block;max-width:100%}
           <h2 class="display dx-3 rise" style="--d:.2s">Four moves worth thinking about <span class="blue-it">this quarter.</span></h2>
           <div class="imply-grid">
             <div class="imp" style="--d:.4s">
-              <div class="imp-icon">i</div>
               <h4>Revisit your digital wallet strategy.</h4>
               <p>Even if you never issue a token, your customers will hold them. The wallet is the home screen for money — and the bank that owns the wallet owns the relationship.</p>
             </div>
             <div class="imp" style="--d:.5s">
-              <div class="imp-icon">ii</div>
               <h4>Plan for parallel ledgers.</h4>
               <p>Traditional cores were never designed for 24/7/365 tokenized assets. Most banks will run synchronized ledgers — programmable rail alongside the existing core — for years.</p>
             </div>
             <div class="imp" style="--d:.6s">
-              <div class="imp-icon">iii</div>
               <h4>Think about token-as-collateral.</h4>
               <p>As Treasuries, real estate, and money-market funds tokenize, your customers will hold them in wallets. You'll want to lend against — or take them as — collateral.</p>
             </div>
             <div class="imp" style="--d:.7s">
-              <div class="imp-icon">iv</div>
               <h4>Don't wait for the perfect playbook.</h4>
               <p>The rulebook is being written in real time. Banks that engage early — cohorts, comment letters, pilots — get to shape interoperability and economics.</p>
             </div>
@@ -660,7 +656,7 @@ img,svg,canvas{display:block;max-width:100%}
       <div class="page-body">
         <div class="reading">
           <div class="eyebrow fade" style="--d:.1s"><span class="seq">07</span>Go Deeper · Banker-to-Banker</div>
-          <h2 class="display dx-3 rise" style="--d:.2s">Read the source articles. <br><span class="blue-it">All from SouthState Correspondent.</span></h2>
+          <h2 class="display dx-3 rise" style="--d:.2s">More from <span class="blue-it">SouthState Correspondent.</span></h2>
           <div class="reading-list">
             <a class="read" style="--d:.4s" href="https://southstatecorrespondent.com/banker-to-banker/stablecoin-tokenized-deposits/8-insights-you-need-to-know-about-tokenized-deposits/" target="_blank" rel="noopener">
               <div><div class="date">Dec 4, 2025</div><h4>8 Insights You Need to Know About Tokenized Deposits</h4></div>
